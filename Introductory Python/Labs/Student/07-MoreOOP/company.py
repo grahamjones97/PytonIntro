@@ -44,7 +44,9 @@ class Programmer(Employee):
         super().__init__(name, salary)
         self.__languages = {}
 
-    def get_languages(self, name, languages):
-        self.__name = name
+    def set_languages(self, languages):
         self.__languages = languages
+
+    def display_languages(self, name):
+        self.__name = name
         print(f"{self.__name} knows {self.__languages}")
