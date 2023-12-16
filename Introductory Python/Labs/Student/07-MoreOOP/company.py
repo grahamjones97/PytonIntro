@@ -47,6 +47,9 @@ class Programmer(Employee):
     def set_languages(self, languages):
         self.__languages = languages
 
-    def display_languages(self, name):
+    def set_name(self, name):
         self.__name = name
-        print(f"{self.__name} knows {self.__languages}")
+        return name
+
+    def toStringTwo(self):
+        return f"{self.__name} knows {self.__languages}"
