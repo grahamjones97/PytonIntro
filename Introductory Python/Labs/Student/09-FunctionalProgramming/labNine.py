@@ -15,13 +15,11 @@ print((lambda x: x % 2 == 0)(555))  # Works
 # negative(negate)
 
 
-def nth(number, list):
-    if number == list[0]:
-        return list[0]
-    else:
-        print(list)
+def nth(number, mylist):
+    if mylist != number:
+        return mylist[number]
+    return 1 + nth(mylist[1:], number)
 
 
-my_list = [1, 2, 3, 4]
-
-print(nth(1, my_list))
+my_list = [100, 101, 102, 103, 104, 105, 106]
+print(nth(3, my_list))
