@@ -57,4 +57,7 @@ class Programmer(Employee):
             return self._salary
 
     def toStringTwo(self):
-        return f"{self.__name} knows {self.__languages}"
+        return f"{self.__name} knows {self.__languages} and salary is: {self._salary}"
+
+    def __str__(self):
+        return f"{self.__name} knows {self.__languages} and salary is: {self._salary}"
