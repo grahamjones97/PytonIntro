@@ -10,7 +10,7 @@ class Employee:
     # Initialization.
     def __init__(self, name, salary):
         self.__name = name
-        self.__salary = max(salary, Employee.__minimumSalary)
+        self._salary = max(salary, Employee.__minimumSalary)
         self.__joined = datetime.now()
 
         self.__id = Employee.__nextEmployeeID
@@ -19,15 +19,15 @@ class Employee:
     # Business methods.
 
     def payRaise(self, amount):
-        self.__salary += amount
+        self._salary += amount
 
     def payBonus(self, percentBonus=1, min=None, max=None):
-        if (min is None or self.__salary >= min) and \
-           (max is None or self.__salary <= max):
-            self.__salary *= 1 + percentBonus / 100
+        if (min is None or self._salary >= min) and \
+           (max is None or self._salary <= max):
+            self._salary *= 1 + percentBonus / 100
 
     def toString(self):
-        return "[{0}] {1} earns {2}, joined {3}".format(self.__id, self.__name, self.__salary, self.__joined.strftime("%c"))
+        return "[{0}] {1} earns {2}, joined {3}".format(self.__id, self.__name, self._salary, self.__joined.strftime("%c"))
 
     # Class methods.
 
@@ -42,14 +42,19 @@ class Programmer(Employee):
 
     def __init__(self, name, salary):
         super().__init__(name, salary)
+        self.__name = name
         self.__languages = {}
 
     def set_languages(self, languages):
         self.__languages = languages
 
-    def set_name(self, name):
-        self.__name = name
-        return name
+    def payBonus(self, percentBonus=1, min=None, max=None):
+        if len(self.__languages) > 1:
+            self._salary = (self._salary * (1 + percentBonus / 100)) + 100
+            return self._salary
+        else:
+            self._salary *= 1 + percentBonus / 100
+            return self._salary
 
     def toStringTwo(self):
         return f"{self.__name} knows {self.__languages}"
