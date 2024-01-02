@@ -48,6 +48,9 @@ class Programmer(Employee):
     def set_languages(self, languages):
         self.__languages = languages
 
+    def add_language(self, languages):
+        self.__languages
+
     def payBonus(self, percentBonus=1, min=None, max=None):
         if len(self.__languages) > 1:
             self._salary = (self._salary * (1 + percentBonus / 100)) + 100
